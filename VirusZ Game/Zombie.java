@@ -13,9 +13,13 @@ public class Zombie extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int animateImage = 0;
+    int animateSpeed = 5;
     int count;
-    public Zombie()
+    int health = 3;
+    Player player;
+    public Zombie(Player mainPlayer)
     {
+        player = mainPlayer;
         setImage("zombie-walk_16.png");
         getImage().scale(120,120);
     }
@@ -24,11 +28,13 @@ public class Zombie extends Actor
     {
         count++;
         animate();
+        walk();
+        hitByBullet();
     }
     
     public void animate()
     {
-        if(count % 8 == 0)
+        if(count % animateSpeed == 0)
         {
             if(animateImage > 16)
             {
@@ -36,7 +42,25 @@ public class Zombie extends Actor
             }
             setImage("zombie-walk_" + animateImage + ".png");
             animateImage++;
-            
+            getImage().scale(130,130);
         }
+    }
+    
+    public void walk()
+    {
+        move(1);
+        turnTowards(player.getX(), player.getY());
+    }
+    
+    public void hitByBullet()
+    {
+        Actor bullet = getOneIntersectingObject(Bullet.class);
+        if(bullet != null)
+        {
+            health--;
+            getWorld().removeObject(bullet);
+        }
+        if(health == 0)
+        getWorld().removeObject(this);
     }
 }

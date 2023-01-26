@@ -19,6 +19,7 @@ public class Player extends Actor
         turnAround();
         moveAround();
         fireBullet();
+        youLose();
     }
     
     public void turnAround()
@@ -51,7 +52,16 @@ public class Player extends Actor
         Bullet bullet = new Bullet();
         getWorld().addObject(bullet, getX(), getY());
         bullet.setRotation(getRotation());
-        
+        bullet.move(20);
+        }
+    }
+    
+    public void youLose()
+    {
+        if(isTouching(Zombie.class))
+        {
+            getWorld().showText("You Lose!!!!", getWorld().getWidth()/2, getWorld().getHeight()/2);
+            Greenfoot.stop();
         }
     }
 }
