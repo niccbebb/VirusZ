@@ -45,10 +45,10 @@ public class HealthBar extends Actor
         {
             health--;
         }
-        //if(health<=0)
+        if(health<=0)
         //{
         //    getWorld().showText("You Lose!!", getWorld()getWidth /2 , getWorld().getHeight()/2);
-        //    Greenfoot.stop();
+        Greenfoot.stop();
         //}
     }
 }
