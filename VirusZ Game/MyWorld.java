@@ -12,26 +12,23 @@ public class MyWorld extends World
     int spawnSpeed = 50;
     int randomSpawn;
     public Player mainPlayer = new Player();
+    HealthBar healthbar = new HealthBar();
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
     public MyWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 800, 1); 
-        prepare();
-    }
     
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
         Player player = new Player();
         addObject(mainPlayer, 500, 400);
-
+        addObject(healthbar, mainPlayer.getX() - 5, mainPlayer.getY() - 50);
+    }
+    
+    public Player getPlayer()
+    {
+        return mainPlayer;
     }
     
     public void act()

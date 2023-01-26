@@ -10,5 +10,5 @@ comment3.target=void\ moveAround()
 comment4.params=
 comment4.target=void\ fireBullet()
 comment5.params=
-comment5.target=void\ youLose()
+comment5.target=boolean\ hitByZombie()
 numComments=6
