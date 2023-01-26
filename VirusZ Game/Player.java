@@ -16,6 +16,13 @@ public class Player extends Actor
     int speed = 3;
     public void act()
     {
+        turnAround();
+        moveAround();
+        fireBullet();
+    }
+    
+    public void turnAround()
+    {
         MouseInfo pointer = Greenfoot.getMouseInfo();
         if(pointer != null)
         {
@@ -23,6 +30,10 @@ public class Player extends Actor
             int mouseY = pointer.getY();
             turnTowards(mouseX, mouseY);
         }
+    }
+    
+    public void moveAround()
+    {
         if(Greenfoot.isKeyDown("w"))
         setLocation(getX(),getY() - speed);
         if(Greenfoot.isKeyDown("a"))
@@ -31,5 +42,16 @@ public class Player extends Actor
         setLocation(getX(),getY() + speed);
         if(Greenfoot.isKeyDown("d"))
         setLocation(getX() + speed, getY());
+    }
+    
+    public void fireBullet()
+    {
+        if(Greenfoot.mousePressed(null))
+        {
+        Bullet bullet = new Bullet();
+        getWorld().addObject(bullet, getX(), getY());
+        bullet.setRotation(getRotation());
+        
+        }
     }
 }
